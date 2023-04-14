@@ -9,13 +9,10 @@ class RabbitMQ{
     config()
 
     try {
-      console.log(process.env.AMQP_SERVER)
       const connection = await connect(process.env.AMQP_SERVER ?? "")
 
       const channel = await connection.createChannel()
       await channel.assertQueue(process.env.QUEUE_NAME ?? "default")
-
-      console.log(channel)
 
       return channel
     }
